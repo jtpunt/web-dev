@@ -1,0 +1,41 @@
+<h1>Current Classes:</h1>
+<h1>Handlebars JS Example</h1>
+{{#each foo}}
+{{this}}
+{{/each}}
+<table>
+    <thead> 
+        <th>Class ID</th>
+        <th>Class Name</th> 
+        <th>Semester Taken</th>
+        <th>Professor ID</th>
+        <th>SyllabusFilePath</th>
+        <th>Final Grade</th>
+    </thead> 
+    <tbody> 
+        {{#each courses}} 
+        <tr> 
+            <td>{{Class_ID}}</td>
+            <td>{{Class_Name}}</td>             
+            <td>{{Semester_Taken}}</td>          
+            <td>{{Prof_Name}}</td>             
+            <td>{{SyllabusFilePath}}</td>             
+            <td>{{FinalGrade}}</td> 
+            <td><button onclick="deleteCourse('{{Class_ID}}')">Delete</td> 
+            <td><a href="/courses/{{Class_ID}}">Update</a><td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+<form id="addcourse" action="/courses" method="post">
+    Course ID: <input type="text" name="Class_ID"><br>
+    Course Name: <input type="text" name="Class_Name"><br>
+    Course Description: <input type="text" name="Class_Description"><br>
+    Semester Taken: <input type="text" name="Semester_Taken"><br>
+    Professor: <select name="professor"> 
+        {{#each professors}}
+        <option value="{{Prof_ID}}">{{Prof_Name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+</form>

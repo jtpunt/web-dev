@@ -1,0 +1,25 @@
+#left-sidebar-wrapper{
+  width:12.5%; 
+  float:left; 
+  border:5px solid gray;
+  background-color: #f1f1f1;
+}
+#right-sidebar-wrapper{
+  width:12.5%;
+  float:right;
+  border:5px solid gray;
+}
+#maincontent{
+ display:inline-block;
+ margin: 0 auto;
+ margin-left: 2.5%;
+ border:5px solid #3b77d6;
+ width: 70%;
+ height:100%;
+}
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: blue;
+    height: 100%;
+}

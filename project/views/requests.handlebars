@@ -1,0 +1,8 @@
+<h1>{{method}} Request Recieved</h1>
+{{#if dataList.length}}
+<ul>
+  {{#each dataList}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+</ul>
+{{/if}}

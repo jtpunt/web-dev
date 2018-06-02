@@ -1,0 +1,13 @@
+<h1>Update {{course.Class_ID}}, {{course.Class_Name}}:</h1>
+<form id="update-course" action="/courses" method="post">
+    Class ID: <input type="text" name="Class_ID" value="{{course.Class_ID}}"><br>
+    Class Name: <input type="text" name="Class_Name" value="{{course.Class_Name}}"><br>
+    Class Description: <textarea name="Class_Description"> {{course.Class_Description}}</textarea><br>
+    Professor: <select name="professors" id=professor-selector"> 
+        {{#each professors}}
+        <option value="{{Prof_ID}}">{{Prof_Name}}</option>
+        {{/each}}
+    </select><br>
+</form>
+<button onclick="updateCourse('{{course.Class_ID}}');">Update</button>
+<script defer>selectProfessor({{course.Prof_ID}});</script>
