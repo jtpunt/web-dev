@@ -1,0 +1,34 @@
+<h1>Hello {{name}} Here is your To Do List!</h1>
+<h2>You have {{toDoCount}} items on your to do list.</h2>
+<form action="/toDo" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name"  /><br>
+  <label for="zip">Zip Code:</label>
+  <input type="number" name="zipcode" /><br>
+  <label for="minTemp">Min Temp</label>
+  <input type="number" name="lowTemp"  /><br>
+  <label for="maxTemp">Max Temp</label>
+  <input type="number" name="highTemp" /><br>
+  <input type="submit" name="Add Item" /><br>
+</form>
+{{#if toDo}}
+<ul>
+  {{#each toDo}}
+  <li id="{{this.id}}">
+    <h3>{{this.name}}</h3>
+    <ul>
+        <li>Zipcode: {{ this.zipcode }}</li>
+        <li>Min Temp: {{ this.lowTemp }}</li>
+        <li>Max Temp: {{ this.highTemp }}</li>
+        <li>Today's low: {{ apiMinTemp }}</li>
+        <li>Today's high: {{ apiMaxTemp }}</li>
+    </ul>
+    <form method="post">
+      <input type="hidden" name="id" value="{{this.id}}">
+      <input type="submit" name="Done" value="Mark as Done">
+    </form>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
+<h1>{{this.tempMin}}</h1>
