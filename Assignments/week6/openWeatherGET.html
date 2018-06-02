@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="GETscript.js"></script>
+</head>
+<body>
+	<form>
+      <fieldset>
+        <legend>Show Weather Information</legend>
+        <select id ="mySelection">
+        	<option value="zipcode" selected="selected">By Zipcode</option>
+        	<option value="city">By City</option>
+        </select>
+        <label for="location"></label>
+        <input type="text" name="location" id="location" data-help="Adjust Drop Down Menu, Then Enter City Name or Zip Code">
+        <input type="submit" id="urlSubmit">
+        <p id="help"></p>
+      </fieldset>
+      <p id="error"></p>
+    </form>
+    <div>
+      <h2><span id="city"></span></h2>
+      <ul>
+        <li><span>Today's Temperature: </span><span id="temp"></span></li>
+        <li><span>Today's Humidity: </span><span id="humidity"></span></li>
+        <li><span>Today's Pressure: </span><span id="pressure"></span></li>
+        <li><span>Today's High: </span><span id="high"></span></li>
+        <li><span>Today's Low: </span><span id="low"></span></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="dropdownHelper.js"></script>
+</body>
+</html>
