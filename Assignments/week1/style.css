@@ -1,0 +1,19 @@
+tbody tr:nth-of-type(odd){
+	background-color: #90ED95;
+}
+tbody tr:nth-of-type(even){
+	background-color: #ACD7E4;
+}
+tbody tr th{
+	font-weight: normal;
+	font-style: italic;
+}
+tbody tr td:nth-of-type(2){
+	color: red;
+}
+tbody tr td:nth-of-type(4){
+	color: blue;
+}
+p {
+	text-align: center;
+}

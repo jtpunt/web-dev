@@ -1,0 +1,39 @@
+
+/**********************
+Author: Jonathan Perry
+Class: CS 290
+Assignment: HTML/CSS
+Date: 10/5/17 
+**********************/
+tbody>tr:nth-of-type(odd){
+	background-color: #90ED95;
+}
+tbody>tr:nth-of-type(even){
+	background-color: #ACD7E4;
+}
+tbody th{
+	font-weight: normal;
+	font-style: italic;
+}
+tbody td:nth-child(2){
+	color: red;
+}
+tbody td:nth-child(4){
+	color: blue;
+}
+.outer-content {
+	width: 75%;
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: pink;
+}
+.inner-content {
+	width: 75%;
+	margin: 0 auto;
+	text-align: center;
+	background-color: blue;
+}
+table, th, td {
+	border: 1px solid black;
+}
