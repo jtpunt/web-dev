@@ -1,0 +1,99 @@
+body {
+  background-color: #000;
+}
+
+#landing-header {
+  /* x/y is left/right/up/down
+    z is forward and backward into space */
+  z-index: 1;
+  /* We have to change the position from something
+     other than static to use z-index. Static is the
+     default position value for all html elements. Static
+     will actually ignore the z-index value */
+  position: relative;
+  text-align: center;
+  /*vh - view height*/
+  padding-top: 40vh;
+}
+
+/* Add a white text-color to our header*/
+#landing-header h1 {
+  color: #fff;
+}
+
+/* Makes our undordered list and its list items fit across the entire page*/
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* Sets the background images to be behind our header and view campgrounds button */
+  z-index: 0;
+  /* Removes the bullet points */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Style the individual list items in the unordered listed*/
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Allows the images to take up the entire space of the page*/
+  background-size: cover;
+  /* Centers the images on the page*/
+  background-position: 50% 50%;
+  /* Prevents images from repeating vertically or horizontally */
+  background-repeat: no-repeat;
+  /* Have our images slowly fade into an opacity from 0 to 1, so images will not initially be shown*/
+  opacity: 0;
+  /* Ensure the background images are behind our content */
+  z-index: 0;
+  /* Allows us to fade our images in and out 
+     linear - same speed from beginning to end 
+     infinite - our slide show never ends */
+  animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(http://i.imgur.com/emvhOnb.jpg);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+  animation-delay: 40s; 
+}
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
