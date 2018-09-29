@@ -1,0 +1,13 @@
+This project is still currently being worked on. USE AT YOUR OWN RISK!
+
+This project was inspired by a project called "Raspiviv", from Raspiviv.com, where direct support no longer exists from the website.
+
+The project was originally written in PHP, but I have rebuilt it using node.js, ejs, and javascript.
+
+The project requires you to install the npm package "node-dht-sensor", as seen on this github page: https://github.com/momenso/node-dht-sensor
+
+I have used an online mongodb host to store the sensor type and GPIO pin of each sensor, so anyone who uses this project will have to find their own mongodb host.
+
+On the /sensor HTML route, you can dynamically add each DHT11 or DHT22 sensors with the GPIO pin # they're using and instantly see this reflect on home page.
+
+For example, HTML temperature/humidity gauges will be individually generated for each sensor you add from the /sensor route.
