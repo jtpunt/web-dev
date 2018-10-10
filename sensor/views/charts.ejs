@@ -1,0 +1,106 @@
+<% include ./partials/header %>
+<% var chart = charts; console.log("Hi!" + chart[0].date); %>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    console.log("Outside drawChart" + <%=chart[0].temp%>);
+    function drawChart() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('datetime', 'Time of Day');
+		data.addColumn('number', 'Motivation Level');
+		var data1 = new google.visualization.DataTable();
+		data1.addColumn('datetime', 'Time of Day');
+		data1.addColumn('number', 'Motivation Level');
+		var tempArr = [];
+		var humidArr = [];
+		<% chart.forEach(function(myChart){ %>
+			tempArr.push([new Date("<%=myChart.date%>"), <%=myChart.temp%>]);
+			humidArr.push([new Date("<%=myChart.date%>"), <%=myChart.humid%>]);
+		<% }); %>
+		tempArr.forEach(function(dateObj){
+			console.log(dateObj[0]);
+		});
+		data.addRows(tempArr);   
+		data1.addRows(humidArr);
+
+		console.log(data1);
+		var options = {
+			width: 900,
+			height: 500,
+			legend: {position: 'none'},
+			enableInteractivity: false,
+			chartArea: {
+			  width: '85%'
+			},
+			hAxis: {
+			  viewWindow: {
+			    min: new Date(tempArr[0][0]),
+			    max: new Date(tempArr[tempArr.length - 1][0])
+			    // min: new Date(2018, 9, 8),
+			    // max: new Date(2018, 9, 9)
+			  },
+			  gridlines: {
+			    count: -1,
+			    units: {
+			      days: {format: ['MMM dd']},
+			      hours: {format: ['HH:mm', 'ha']},
+			    }
+			  },
+			  minorGridlines: {
+			    units: {
+			      hours: {format: ['hh:mm:ss a', 'ha']},
+			      minutes: {format: ['HH:mm a Z', ':mm']}
+			    }
+			  }
+			}
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+		options.title = "Temperature";
+    	chart.draw(data, options);
+    	options.title = "Humidity";
+    	chart1.draw(data1, options);
+    	var mySelect = document.getElementById('mySelect');
+    	mySelect.onchange = function(){
+    		var today = new Date();
+    		if(this.value === "Yesterday"){ 
+    			options.hAxis.viewWindow.min = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1); // Display 
+    			options.hAxis.viewWindow.max = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    		}
+    		else if(this.value === "Today"){
+    			options.hAxis.viewWindow.min = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    			options.hAxis.viewWindow.max = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    		}else if(this.value === "Week"){
+    			var dayOfWeek = today.getDay();
+    			console.log(dayOfWeek);
+    			options.hAxis.viewWindow.min = new Date(today.getFullYear(), today.getMonth(), today.getDate() - dayOfWeek);
+    			options.hAxis.viewWindow.max = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 6 - dayOfWeek);
+    		}
+    		else if(this.value === "Month"){
+    			options.hAxis.viewWindow.min = new Date(today.getFullYear(), today.getMonth());
+    			options.hAxis.viewWindow.max = new Date(tempArr[tempArr.length - 1][0]);
+    		}else{
+    			options.hAxis.viewWindow.min = new Date(tempArr[0][0]);
+    			options.hAxis.viewWindow.max = new Date(tempArr[tempArr.length - 1][0]);
+    		}
+    		chart.draw(data, options);
+    			chart1.draw(data1, options);
+    		console.log(data1);
+    	};
+    }
+</script>
+<body>
+	<select id="mySelect">
+		<option value="" default>Display ..</option>
+		<option value="Yesterday">Yesterday</option>
+		<option value="Today">Today</option>
+		<option value="Week">Week</option>
+		<option value="Month">Month</option>
+		<option value="All Time">All Time</option>
+	</select>
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
+	<div id="chart_div1" style="width: 900px; height: 500px;"></div>
+</body>
+
+<% include ./partials/footer %>
