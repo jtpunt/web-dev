@@ -40,7 +40,6 @@ def getSensorSetup(db):
 	cursor = collection.find({}) # retrieves all the GPIO PINS + DHT model (11 or 22) data of your sensor setup 
 	for document in cursor: # loop through each individual sensor in your setup
 		SENSOR_SETUP.append(document)
-		# SENSOR_SETUP.append({'_id': document['_id'], 'sensor': document['sensor'], 'pin': document['pin']}) # 
 	return SENSOR_SETUP
 
 def main():
