@@ -55,23 +55,12 @@ def main():
 			collection = db['sensor_readings']
 			while(1):
 				sensorData = getSensorData(SENSOR_SETUP)
-				# datetime_object = datetime.strptime(sensorData[0].date, '%Y-%m-%d %H:%M:%S')
-				# print(datetime_object)
 				result = collection.insert_many(sensorData)
 				sleep(60*60*1) # every hour
 		else:
 			print("NO SENSORS SETUP IN DATABASE!")
 	else:
 		print("AUTH NOT SUCCESSFUL!")
-
-# class sensorData:
-# 	_refID=StringField(required=True, max_length=200)
-# 	gpio_pin=IntField(required=True)
-# 	temp=IntField(required=True)
-# 	humid=IntField(required=True)
-# 	date=DatetimeField(default=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-# class sensor:
-# 	_id=
 
 
 if __name__ == "__main__":
