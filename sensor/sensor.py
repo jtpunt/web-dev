@@ -46,7 +46,7 @@ def getSensorSetup(db):
 def main():
 	DB_USER="username"
 	DB_PASS="password"
-	client = MongoClient("ds219191.mlab.com", 19191)
+	client = MongoClient("server", 19191)
 	db = client['dht-sensors']
 	if db.authenticate(DB_USER, DB_PASS):
 		print("AUTH SUCCESS!")
