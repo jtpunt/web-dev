@@ -8,6 +8,6 @@ The project requires you to install the npm package "node-dht-sensor", as seen o
 
 I have used an online mongodb host to store the sensor type and GPIO pin of each sensor, so anyone who uses this project will have to find their own mongodb host.
 
-On the /sensor HTML route, you can dynamically add each DHT11 or DHT22 sensors with the GPIO pin # they're using and instantly see this reflect on home page.
+On the /sensor HTML route, you can dynamically add each DHT11 or DHT22 sensors with the GPIO pin # you're using and instantly see this reflected on home page.
 
 For example, HTML temperature/humidity gauges will be individually generated for each sensor you add from the /sensor route.
