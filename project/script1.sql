@@ -1,0 +1,13 @@
+INSERT INTO Professors VALUES (1, 'Torress', 'Russell');
+INSERT INTO Professors VALUES (2, 'Peak', 'Daniel');
+INSERT INTO Professors VALUES (3, 'Guynes', 'Steve');
+INSERT INTO Professors VALUES (4, 'Wu', 'Yu');
+INSERT INTO Professors VALUES (5, 'Koh', 'Chang');
+INSERT INTO Professors VALUES (6, 'Mai', 'Bin');
+INSERT INTO Professors VALUES (7, 'Becker', 'Jack');
+INSERT INTO Professors VALUES (8, 'White', 'Melody');
+INSERT INTO Professors VALUES (9, 'Capan', 'Cengiz');
+INSERT INTO Professors VALUES (10, 'Kappelman', 'Leon');
+INSERT INTO Professors VALUES (11, 'Windsor', 'John');
+INSERT INTO Professors VALUES (12, 'Evangelopoulos', 'Nick');
+INSERT INTO Professors VALUES (13, 'Becker', 'Jack');
