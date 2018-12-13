@@ -5,6 +5,7 @@ var express    = require("express"),
     Sensor     = require("../models/sensor"),
     router     = express.Router();
 
+
 // root route
 router.get("/", function(req, res){
     getSensors(function(sensors){ // Get our sensors from our mongo database
@@ -13,7 +14,8 @@ router.get("/", function(req, res){
             sensors.forEach(function(mySensor){ // for each sensor in the database, use the sensor type (DHT11 or DHT22) and GPIO pin to get the temp/humid reading
                 sensorData.push(await (readSensor(mySensor.sensor, mySensor.pin))); // push the temp/humid reading into an array that holds sensor data
             });
-            res.render("index", {sensors: sensorData}); 
+            console.log("In root route with: ", sensors);
+            res.render("index", {sensors: sensorData, scripts: ["/static/js/drawGauges.js"]}); 
         }))();
     });
 });

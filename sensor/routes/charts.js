@@ -7,9 +7,11 @@ router.get("/", function(req, res){
         if(err) console.log(err);
         else{
           chart.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
             return new Date(b.date) - new Date(a.date);
           });
-          res.render("charts", {charts: chart, scripts: ["/static/js/drawCharts.js"]});
+          res.render("charts", {charts: chart, scripts: ["/static/js/drawCharts.js"], stylesheets: ["/static/css/charts.css"]});
         }
     });
 });

@@ -4,10 +4,10 @@ var express    = require("express"),
     await      = require("asyncawait/await"),
     Sensor     = require("../models/sensor"),
     router     = express.Router();
-    
+
 router.get("/", function(req, res){
     getSensors(function(sensors){
-        res.render("sensors", {sensors: sensors});
+        res.render("sensors", {sensors: sensors, stylesheets: ["/static/css/sensors.css"]});
     });
 });
 router.post("/", function(req, res){
