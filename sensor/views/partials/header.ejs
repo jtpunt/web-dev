@@ -3,7 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Canvas Thermometer </title>
-		<script src="/static/js/thermometer.js"></script>
+		<% if(typeof scripts !== 'undefined') scripts.forEach(function(script) { %>
+			<script src=<%=script%>></script>
+		<% }); %>
+		<% if(typeof stylesheets !== 'undefined') stylesheets.forEach(function(stylesheet){ %>
+			<link rel="stylesheet" type="text/css" href="<%=stylesheet%>">
+		<% }); %> 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -18,12 +23,12 @@
 	                  <span class="icon-bar"></span>
 	                  <span class="icon-bar"></span>
 	                </button>
-	    
 	                <a class="navbar-brand" href="/">DHT Sensors</a>
 	            </div>
 	            <div id="navbar" class="collapse navbar-collapse">
 	              <ul class="nav navbar-nav">
-	                <li><a href="/sensors">Home</a></li>
+	                <li><a href="/sensors">Sensors</a></li>
+	                <li><a href="/charts">Charts</a></li>
 	              </ul>
 	              <ul class="nav navbar-nav navbar-right">
 	              </ul>
