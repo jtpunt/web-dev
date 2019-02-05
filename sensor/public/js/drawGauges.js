@@ -11,9 +11,9 @@ var humidOptions = {
     minorTicks: 5
 };
 function drawGauge(temp, options, gaugeID) {
-    var gaugeOptions = (options) ? humidOptions : tempOptions;
-    var label = (options) ? "HUM %" : "TEMP ";
-    google.charts.load('current', {'packages':['gauge'], callback: function(){
+    let gaugeOptions = (options) ? humidOptions : tempOptions;
+    let label = (options) ? "HUM %" : "TEMP ";
+    google.charts.load('current', {'packages':['gauge'], callback: () => {
         gaugeData = new google.visualization.DataTable();
         gaugeData.addColumn('number', label);
         gaugeData.addRows(2);

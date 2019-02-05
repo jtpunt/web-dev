@@ -3,7 +3,7 @@
     <div class="row">
         <h1 style="text-align: center;">Edit Sensor</h1>
         <div style="width: 30%; margin:25px auto;">
-            <form method="post">
+            <form action="/sensors/<%=sensor._id%>/?_method=PUT" method="post">
             	<select name="model">
             		<option value="-1" selected="selected" disabled>Select Your Sensor Model:</option>
 					<option value="11">DHT11</option>

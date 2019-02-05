@@ -3,10 +3,10 @@ var express    = require("express"),
     router     = express.Router();
 
 router.get("/", function(req, res){
-    Chart.find({}, {"_id" : false}, function(err, chart){ //remove _id from query result
+    Chart.find({}, {"_id" : false}, (err, chart) => { //remove _id from query result
         if(err) console.log(err);
         else{
-          chart.sort(function(a,b){
+          chart.sort((a,b) => {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(b.date) - new Date(a.date);

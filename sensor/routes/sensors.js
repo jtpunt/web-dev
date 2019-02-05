@@ -5,26 +5,26 @@ var express    = require("express"),
     Sensor     = require("../models/sensor"),
     router     = express.Router();
 
-router.get("/", function(req, res){
-    getSensors(function(sensors){
+router.get("/", (req, res) =>{
+    getSensors((sensors) => {
         res.render("sensors", {sensors: sensors, stylesheets: ["/static/css/sensors.css"]});
     });
 });
-router.post("/", function(req, res){
-    Sensor.create({ sensor: req.body.model, pin: req.body.pin}, function(err, sensor){
+router.post("/", (req, res) => {
+    Sensor.create({ sensor: req.body.model, pin: req.body.pin}, (err, sensor) =>{
         if(err) console.log(err);
         else{
             console.log(sensor, " created");
             sensor.save();
-            getSensors(function(sensors){
+            getSensors((sensors) =>{
                 res.render("sensors", {sensors: sensors});
             });
         }
     });
 });
 //EDIT
-router.get("/:sensor_id/edit", function(req, res){
-    Sensor.findById(req.params.sensor_id, function(err, foundSensor){
+router.get("/:sensor_id/edit", (req, res) => {
+    Sensor.findById(req.params.sensor_id, (err, foundSensor) =>{
         if(err) res.redirect("back");
         else{
             console.log(foundSensor);
@@ -32,18 +32,30 @@ router.get("/:sensor_id/edit", function(req, res){
         }
     });
 });
-router.delete("/:sensor_id", function(req, res){
-    Sensor.findByIdAndRemove(req.params.sensor_id, function(err){
+// UPDATE
+router.put("/:sensor_id", (req, res) => {
+    let newData = { sensor: req.body.model, pin: req.body.pin};
+    Sensor.findByIdAndUpdate(req.params.sensor_id, {$set: newData}, (err, sensor) => {
+        if(err){
+            res.redirect("back");
+        } else {
+            console.log("Successfully Updated!");
+            res.redirect("/sensors");
+}
+    });
+})
+router.delete("/:sensor_id", (req, res) => {
+    Sensor.findByIdAndRemove(req.params.sensor_id, (err) => {
         if(err) res.redirect("back");
         else{
-            getSensors(function(sensors){
+            getSensors((sensors) => {
                 res.render("sensors", {sensors: sensors});
             });
         }
     });
 });
 function getSensors(_callback){
-    Sensor.find({}, function(err, sensor){
+    Sensor.find({}, (err, sensor) => {
         if(err) console.log(err);
         else{
             _callback(sensor);
