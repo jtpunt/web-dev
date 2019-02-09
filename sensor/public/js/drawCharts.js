@@ -12,7 +12,7 @@ document.onreadystatechange = () => {
 }
 function setChartHandler(chart, data, title){
     var mySelect = document.getElementById('mySelect');
-    mySelect.addEventListener("change", () => {
+    mySelect.addEventListener("change", function() {
         let today = new Date();
         if(this.value === "Yesterday"){ 
             options.hAxis.viewWindow.min = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1); // Displays all of yesterday's temperature + humidity readings that occured between 12am and 12pm
