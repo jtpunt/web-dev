@@ -5,15 +5,24 @@ var express        = require("express"),
     LocalStrategy  = require("passport-local"),
     methodOverride = require("method-override"),
     sensor         = require('node-dht-sensor'),
-    Sensor         = require("./models/sensor");
+    Sensor         = require("./models/sensor"),
+    Chart          = require("./models/chart"),
     seedDB         = require("./seed"),
+    schedule       = require('node-schedule'),
+    http          = require('http');
     app            = express();
 // requiring routes
 var indexRoutes   = require("./routes/index"),
     sensorRoutes  = require("./routes/sensors"),
-    taskRoutes    = require("./routes/tasks");
-    
-mongoose.connect("mongodb://USERNAME:PASSWORD@SOME-ADDRESS", function(err){
+    chartRoutes   = require("./routes/charts");
+
+var lightsOn = schedule.scheduleJob('09 20 * * *', function(){
+    http.get("http://192.168.1.129:5000/", (resp)=> { console.log(resp)});
+});
+var lightsOff = schedule.scheduleJob('00 14 * * *', function(){
+    http.get("http://192.168.1.129:5000/", (resp)=> { console.log(resp)});
+});
+mongoose.connect("mongodb://jtpunt:1ch33s31@ds219191.mlab.com:19191/dht-sensors", function(err){
     if(err){
         console.log("Error connecting to mongodb", err);
     }else{
@@ -49,7 +58,8 @@ app.use(function(req, res, next){
 // Shortens the route declarations
 app.use("/", indexRoutes);
 app.use("/sensors", sensorRoutes);
-
-app.listen(3001, process.env.IP, function(){
-    console.log("server started on port 3001");
+app.use("/charts", chartRoutes);
+var port = 8080;
+app.listen(port,process.env.IP, function(){
+    console.log("server started on port ", port); 
 });
