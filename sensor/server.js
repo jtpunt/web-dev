@@ -22,7 +22,7 @@ var lightsOn = schedule.scheduleJob('09 20 * * *', function(){
 var lightsOff = schedule.scheduleJob('00 14 * * *', function(){
     http.get("http://192.168.1.129:5000/", (resp)=> { console.log(resp)});
 });
-mongoose.connect("mongodb://jtpunt:1ch33s31@ds219191.mlab.com:19191/dht-sensors", function(err){
+mongoose.connect("mongodb://username:password@ds219191.mlab.com:19191/dht-sensors", function(err){
     if(err){
         console.log("Error connecting to mongodb", err);
     }else{
